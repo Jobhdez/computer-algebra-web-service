@@ -127,6 +127,8 @@ def compute_lalg_expression(request):
 
 
 @api_view(['POST'])
+@login_required(login_url='/api/login/')
+@csrf_exempt
 def compute_poly_expression(request):
     form = PolyForm(request.POST)
     if form.is_valid():
