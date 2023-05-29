@@ -89,8 +89,9 @@ def list_friends_of_user(request):
         cd = form.cleaned_data
         user = User.objects.get(id=cd['id'])
         user_friends = user.friends.all()
-        return serializers.serialize('json', user_friends)
-
+        serializer = serializers.serialize('json', user_friends)
+        return Response(serializer)
+    
 @api_view(['POST'])
 @login_required(login_url='/api/login/')
 @csrf_exempt
